@@ -12,5 +12,7 @@ namespace SwitchEF.Domain.Entities
         public DateTime Birthdate { get; set; }
         public Gender Gender { get; set; }
         public string PhotoUrl { get; set; }
+        public MaritalStatus MaritalStatus { get; set; }
+        public virtual Identification Identification { get; set; }
     }
 }

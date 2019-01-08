@@ -15,7 +15,10 @@ namespace SwitchEF.Infra.Data.Config
             builder.Property(u => u.Password).HasMaxLength(400).IsRequired();
             builder.Property(u => u.Gender).IsRequired();            
             builder.Property(u => u.PhotoUrl).HasMaxLength(400).IsRequired();
-            
+            builder.Property(u => u.MaritalStatus);
+            builder.HasOne(u => u.Identification)
+                    .WithOne(i => i.User)
+                    .HasForeignKey<Identification>(i => i.UserId);
         }
     }
 }

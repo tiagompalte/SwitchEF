@@ -2,39 +2,22 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SwitchEF.Infra.Data.Context;
 
 namespace SwitchEF.Infra.Data.Migrations
 {
     [DbContext(typeof(SwitchEFContext))]
-    partial class SwitchEFContextModelSnapshot : ModelSnapshot
+    [Migration("20190106201554_AddMaritalStatusInUser")]
+    partial class AddMaritalStatusInUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
-
-            modelBuilder.Entity("SwitchEF.Domain.Entities.Identification", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Number");
-
-                    b.Property<int>("TypeDocument");
-
-                    b.Property<int>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
-                    b.ToTable("Identification");
-                });
 
             modelBuilder.Entity("SwitchEF.Domain.Entities.Posting", b =>
                 {
@@ -80,14 +63,6 @@ namespace SwitchEF.Infra.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("SwitchEF.Domain.Entities.Identification", b =>
-                {
-                    b.HasOne("SwitchEF.Domain.Entities.User", "User")
-                        .WithOne("Identification")
-                        .HasForeignKey("SwitchEF.Domain.Entities.Identification", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

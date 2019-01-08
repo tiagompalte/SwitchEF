@@ -7,6 +7,7 @@ namespace SwitchEF.Infra.Data.Context
     public class SwitchEFContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Posting> Postings { get; set; }
 
         public SwitchEFContext(DbContextOptions options) : base(options)
         {
