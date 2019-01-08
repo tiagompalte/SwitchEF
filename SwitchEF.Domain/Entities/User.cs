@@ -1,5 +1,6 @@
 ﻿using SwitchEF.Domain.Enums;
 using System;
+using System.Collections.Generic;
 
 namespace SwitchEF.Domain.Entities
 {
@@ -14,5 +15,6 @@ namespace SwitchEF.Domain.Entities
         public string PhotoUrl { get; set; }
         public MaritalStatus MaritalStatus { get; set; }
         public virtual Identification Identification { get; set; }
+        public virtual ICollection<Posting> Postings { get; set; }
     }
 }
