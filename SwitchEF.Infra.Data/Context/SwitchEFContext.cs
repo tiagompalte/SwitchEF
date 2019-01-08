@@ -8,6 +8,9 @@ namespace SwitchEF.Infra.Data.Context
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Posting> Postings { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<Identification> Identifications { get; set; }
+        public DbSet<UserGroup> UserGroups { get; set; }
 
         public SwitchEFContext(DbContextOptions options) : base(options)
         {
@@ -17,6 +20,9 @@ namespace SwitchEF.Infra.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new PostingConfiguration());
+            modelBuilder.ApplyConfiguration(new GroupConfiguration());
+            modelBuilder.ApplyConfiguration(new UserGroupConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

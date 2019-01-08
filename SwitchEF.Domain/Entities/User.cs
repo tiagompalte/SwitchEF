@@ -16,5 +16,6 @@ namespace SwitchEF.Domain.Entities
         public MaritalStatus MaritalStatus { get; set; }
         public virtual Identification Identification { get; set; }
         public virtual ICollection<Posting> Postings { get; set; }
+        public virtual ICollection<UserGroup> UserGroups { get; set; }
     }
 }
