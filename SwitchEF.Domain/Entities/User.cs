@@ -17,5 +17,10 @@ namespace SwitchEF.Domain.Entities
         public virtual Identification Identification { get; set; }
         public virtual ICollection<Posting> Postings { get; set; }
         public virtual ICollection<UserGroup> UserGroups { get; set; }
+        public virtual ICollection<Workplace> Workplaces { get; set; }
+        public virtual ICollection<EducationalInstitution> EducationalInstitutions { get; set; }
+        public virtual ICollection<Friend> Friends { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
+
     }
 }

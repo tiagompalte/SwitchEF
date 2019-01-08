@@ -13,5 +13,6 @@ namespace SwitchEF.Domain.Entities
         public virtual User User { get; set; }
         public int GroupId { get; set; }
         public virtual Group Group { get; set; }
+        public string ContentUrl { get; set; }
     }
 }

@@ -20,6 +20,8 @@ namespace SwitchEF.Infra.Data.Config
                     .WithOne(i => i.User)
                     .HasForeignKey<Identification>(i => i.UserId);
             builder.HasMany(u => u.Postings).WithOne(p => p.User);
+            builder.HasMany(u => u.Comments).WithOne(c => c.User);
+            builder.HasMany(u => u.Friends).WithOne(f => f.User);
         }
     }
 }
