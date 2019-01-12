@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SwitchEF.Domain\SwitchEF.Domain.csproj" />
+    <ProjectReference Include="..\SwitchEF.Infra.CrossCutting.Logging\SwitchEF.Infra.CrossCutting.Logging.csproj" />
+    <ProjectReference Include="..\SwitchEF.Infra.Data\SwitchEF.Infra.Data.csproj" />
+  </ItemGroup>
+
+</Project>
