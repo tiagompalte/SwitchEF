@@ -1,10 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Logging;
+using MySql.Data.MySqlClient;
 using SwitchEF.Domain.Entities;
 using SwitchEF.Infra.CrossCutting.Logging;
 using SwitchEF.Infra.Data.Context;
 using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace SwitchEFAPP
@@ -22,7 +25,12 @@ namespace SwitchEFAPP
                 return new User()
                 {
                     Name = name,
-                    Lastname = "Sobrenome"
+                    Lastname = "Sobrenome",
+                    Password = "123456",
+                    Birthdate = DateTime.Now,
+                    Gender = SwitchEF.Domain.Enums.Gender.NoDefined,
+                    PhotoUrl = "c:\temp",
+                    MaritalStatus = MaritalStatus.Single
                 };
             }
 
@@ -43,8 +51,34 @@ namespace SwitchEFAPP
 
                     //dbcontext.Users.AddRange(user1, user2, user3);
                     //dbcontext.SaveChanges();
+                    //var result = dbcontext.Users.Where(u => u.Name == "usuário 1").ToList();
 
-                    var result = dbcontext.Users.Where(u => u.Name == "usuário 1").ToList();
+                    //Chamada store procedure
+                    var connection = dbcontext.Database.GetDbConnection();
+                    var list = new List<User>();                    
+                    using(var command = connection.CreateCommand())
+                    {
+                        connection.Open();
+                        command.CommandText = "call spObterUsuario(@userId)";
+                        MySqlParameter param = new MySqlParameter("@userId", SqlDbType.Int);
+                        param.Value = 1;
+                        command.Parameters.Add(param);
+
+                        using(var dataReader = command.ExecuteReader())
+                        {
+                            if(dataReader.HasRows)
+                            {
+                                while(dataReader.Read())
+                                {
+                                    var user = new User();
+                                    user.Name = dataReader["name"].ToString();
+                                    user.Lastname = dataReader["lastname"].ToString();
+                                    list.Add(user);
+                                }
+                            }
+                        }
+                    }
+                    
                 }
             }
             catch (Exception ex)
